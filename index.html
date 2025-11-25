@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Arunachalam RR Nagar — Rajarajeshwari Nagar (Revamped)</title>
+  <title>Arunachalam RR Nagar</title>
   <meta name="description" content="Official page for Arunachalam — information, gallery and contact for Raja Rajeswari Nagar (RR Nagar). Modern responsive revamp." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <!-- Tailwind CDN for quick prototype. For production: install with npm and purge unused CSS. -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
   <style>
     :root{
       --primary: #0f63ff;
@@ -48,31 +49,39 @@
   <header class="bg-white/60 backdrop-blur sticky top-0 z-40 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3">
-        <img src="assets/RR_Nagar_Arch.jpg" alt="Arunachalam RR Nagar" class="h-10 w-10 rounded-sm shadow-sm object-cover">
+        <img src="assets/arunachalam.png" alt="Arunachalam RR Nagar" class="h-20 w-20 rounded-sm shadow-sm object-cover">
         <div>
           <h1 class="text-lg font-semibold">Arunachalam RR Nagar</h1>
           <p class="text-xs text-slate-500">Rajarajeshwari Nagar, Bengaluru</p>
         </div>
       </a>
       <nav class="hidden md:flex gap-6 items-center text-sm">
-        <a href="#about" class="hover:underline">About</a>
-        <a href="#gallery" class="hover:underline">Gallery</a>
-        <a href="#highlights" class="hover:underline">Highlights</a>
-        <a href="#contact" class="rounded-md px-3 py-2 bg-blue-600 text-white">Contact</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#highlights" class="nav-link">Highlights</a>
+        <a href="#contact" class="nav-link rounded-md px-3 py-2 bg-blue-600 text-white">Contact</a>
+        <!-- <div class="ml-6 text-sm text-right">
+          <a href="mailto:info@rrnagar.org" class="block text-slate-600 hover:underline">arunimpa@gmail.com</a>
+          <a href="tel:+918765432100" class="block text-slate-600">+91 9844223500</a>
+        </div> -->
       </nav>
-      <button id="mobile-menu-btn" class="md:hidden p-2 inline-flex items-center justify-center">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
-          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
-        </svg>
+      <button id="mobile-menu-btn" class="md:hidden p-2 inline-flex items-center justify-center hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
       </button>
     </div>
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden border-t">
+    <div id="mobile-menu" class="md:hidden border-t mobile-menu">
       <div class="px-4 py-3 flex flex-col gap-2">
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#highlights">Highlights</a>
+        <a href="#about" class="py-2">About</a>
+        <a href="#gallery" class="py-2">Gallery</a>
+        <a href="#highlights" class="py-2">Highlights</a>
         <a href="#contact" class="mt-2 inline-block bg-blue-600 text-white px-4 py-2 rounded">Contact</a>
+        <div class="mt-3 pt-3 border-t">
+          <a href="mailto:info@rrnagar.org" class="block text-slate-600">info@rrnagar.org</a>
+          <a href="tel:+918765432100" class="block text-slate-600">+91 87654 32100</a>
+        </div>
       </div>
     </div>
   </header>
@@ -91,7 +100,7 @@
         <div class="max-w-6xl mx-auto px-6 py-16 text-white">
           <div class="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Rajarajeshwari Nagar — A thriving, green neighbourhood</h2>
+              <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Dr. R. Arunachalam Rajarajeshwari Nagar</h2>
               <p class="mt-4 text-lg text-blue-100/90">Established in 1987, RR Nagar is a carefully planned community with excellent connectivity, educational institutions and a rich cultural life.</p>
               <div class="mt-6 flex gap-3">
                 <a href="#highlights" class="bg-white text-blue-700 px-4 py-2 rounded shadow">Explore Highlights</a>
@@ -99,12 +108,34 @@
               </div>
             </div>
             <div class="hidden md:block">
-              <img src="assets/RR_Nagar_Arch.jpg" alt="RR Nagar aerial" class="rounded-xl shadow-xl w-full object-cover h-80 relative z-10">
+              <img src="assets/founder.png" alt="RR Nagar aerial" class="rounded-xl shadow-xl w-full object-cover h-full relative z-10">
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- About modal (hidden by default) -->
+    <div id="about-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 px-4">
+      <div class="modal-content bg-white rounded-xl max-w-3xl w-full p-6 relative shadow-xl">
+        <button id="about-modal-close" class="absolute top-4 right-4 p-2 rounded bg-slate-100">✕</button>
+        <h3 class="text-xl font-semibold">About RR Nagar — Extended</h3>
+        <p class="mt-4 text-slate-700">RR Nagar  was established in 1987 and is located off Mysore Road. The name Raja Rajeswarinagar was nominated by the founder with the blessing of Thiruchi Swamiji and was printed on the Possession Certificate in 1989. RR Nagar is the founder's brainchild, and he is the architect and developer of this layout, which consists of 6,000 sites of various dimensions. The total population of RR Nagar is 79,000.</p>
+        <h4 class="mt-4 font-semibold">Development & Planning</h4>
+        <p class="mt-2 text-slate-600">The development of RR Nagar has exceeded the founder's expectations and dreams. The sites were distributed for Rs.13 per sqft in 1988, Rs.18 per sqft in 1990, and Rs.25 per sqft in 1992.</p>
+        <p class="mt-2 text-slate-600">The growth and value of this layout is comparable to Infosys shares. Assuming 1 Share Value = 1 Sqft land value, Infosys shares in 1988 were Rs.70 to Rs.80 per share, whereas 1 Sqft land in 1987 to 1992 given in RR Nagar by BEML Society was Rs.13 to Rs.25. The highest rate of Infosys share value was Rs.1480/- in 2020, including dividends and bonuses it would be around Rs.6500/-.</p>
+        <p class="mt-2 text-slate-600">In 2020, BEML Society sites in RR Nagar had a value of Rs.12,000/- to Rs.15,000/- per sqft, and today BEML Society sites in RR Nagar are worth Rs.15,000 to Rs.20,000/- per sqft.</p>
+        <h4 class="mt-4 font-semibold">Community Initiatives</h4>
+        
+          <p class="mt-2 text-slate-600">RR Nagar has five well-established engineering colleges and one medical college within a radius of 3KM. There are more than 75 schools, including international schools, CBSE, ICSE, and state syllabus schools. There are also 15 hospitals and nursing homes, more than 10 to 12 malls, more than 25 gyms, and all brand houses, clothes shops, and hotels. There are many apartments built by brand builders. RR Nagar is full of greenery with lots of plants and parks. It also has 40 feet, 60 feet, and 80 feet wide roads, beautiful clubs, and famous temples such as Rajarajeswari Temple, Shanmukha Temple, Eswara, Sangemeshwara, Byreshwara, Arunachaleswara, Raghavendra Sai baba, Sri Rama, Gayatri, Lord Venkateshwara, Kanyaka Parameshwari, Shaneshwara, Maruti, and Panchamukhi Ganesha Temples. This is called the temple hub and also education hub.</p>
+          <p class="mt-2 text-slate-600">Nearby, there is Global Village IT Park, a metro railway station, and the NICE road, which connects to Hosur within 45 minutes and an Expressway connecting to Mysore within 75 to 90 minutes, making it a well-connected city.</p>
+        
+
+        <div class="mt-6 text-right">
+          <button id="about-modal-close-2" class="inline-block bg-blue-600 text-white px-4 py-2 rounded">Close</button>
+        </div>
+      </div>
+    </div>
 
     <!-- Community Events -->
     <section id="events" class="max-w-6xl mx-auto px-6 py-14">
@@ -208,6 +239,9 @@
               </div>
             </li>
           </ul>
+          <div class="mt-4">
+            <button id="about-more-btn" class="inline-block mt-2 bg-white border border-slate-200 px-4 py-2 rounded hover:shadow-sm">More</button>
+          </div>
         </div>
         <aside class="bg-white rounded-xl shadow p-5">
           <h4 class="font-semibold">Quick facts</h4>
@@ -259,15 +293,26 @@
     <!-- Gallery -->
     <section id="gallery" class="max-w-6xl mx-auto px-6 py-12">
       <h3 class="text-2xl font-semibold">Gallery</h3>
-      <p class="text-sm text-slate-600 mt-2">Click any image to open a full-screen carousel. Images are lazy-loaded.</p>
-      <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="gallery-grid">
-        <!-- Example images - replace with your own /assets/ folder -->
-        <img loading="lazy" src="assets/RR_Nagar_Arch.jpg" alt="RR Nagar 1" class="w-full h-40 object-cover rounded cursor-pointer" data-index="0">
-        <img loading="lazy" src="assets/Shrungagiri_Sri_Shanmukha_Swamy_Temple_62.jpg" alt="RR Nagar 2" class="w-full h-40 object-cover rounded cursor-pointer" data-index="1">
-        <img loading="lazy" src="assets/RR_Nagar_Arch.jpg" alt="RR Nagar 3" class="w-full h-40 object-cover rounded cursor-pointer" data-index="2">
-        <img loading="lazy" src="assets/Shrungagiri_Sri_Shanmukha_Swamy_Temple_62.jpg" alt="RR Nagar 4" class="w-full h-40 object-cover rounded cursor-pointer" data-index="3">
-        <img loading="lazy" src="assets/RR_Nagar_Arch.jpg" alt="RR Nagar 5" class="w-full h-40 object-cover rounded cursor-pointer" data-index="4">
-        <img loading="lazy" src="assets/Shrungagiri_Sri_Shanmukha_Swamy_Temple_62.jpg" alt="RR Nagar 6" class="w-full h-40 object-cover rounded cursor-pointer" data-index="5">
+      <!-- <p class="text-sm text-slate-600 mt-2">Click any image to open a full-screen view. Carousel below auto-advances; hover to pause.</p> -->
+
+      <div id="carousel" class="mt-6 relative">
+        <div class="overflow-hidden rounded-lg">
+          <div id="carousel-track" class="flex transition-transform duration-700">
+            <div class="carousel-slide flex-shrink-0 w-full h-full"><img loading="lazy" src="assets/RR_Nagar_Arch.jpg" alt="RR Nagar 1" class="w-full h-56 md:h-72 object-cover cursor-pointer" data-index="0"></div>
+            <div class="carousel-slide flex-shrink-0 w-full h-full"><img loading="lazy" src="assets/Shrungagiri_Sri_Shanmukha_Swamy_Temple_62.jpg" alt="RR Nagar 2" class="w-full h-56 md:h-72 object-cover cursor-pointer" data-index="1"></div>
+            <div class="carousel-slide flex-shrink-0 w-full h-full"><img loading="lazy" src="assets/RR_Nagar_Arch.jpg" alt="RR Nagar 3" class="w-full h-56 md:h-72 object-cover cursor-pointer" data-index="2"></div>
+            <div class="carousel-slide flex-shrink-0 w-full h-full"><img loading="lazy" src="assets/Shrungagiri_Sri_Shanmukha_Swamy_Temple_62.jpg" alt="RR Nagar 4" class="w-full h-56 md:h-72 object-cover cursor-pointer" data-index="3"></div>
+            <div class="carousel-slide flex-shrink-0 w-full h-full"><img loading="lazy" src="assets/gallery-1.svg" alt="RR Nagar 5" class="w-full h-56 md:h-72 object-cover cursor-pointer" data-index="4"></div>
+            <div class="carousel-slide flex-shrink-0 w-full h-full"><img loading="lazy" src="assets/gallery-2.svg" alt="RR Nagar 6" class="w-full h-56 md:h-72 object-cover cursor-pointer" data-index="5"></div>
+            <div class="carousel-slide flex-shrink-0 w-full"><img loading="lazy" src="assets/gallery-3.svg" alt="RR Nagar 7" class="w-full h-56 md:h-72 object-cover cursor-pointer" data-index="6"></div>
+            <div class="carousel-slide flex-shrink-0 w-full"><img loading="lazy" src="assets/gallery-4.svg" alt="RR Nagar 8" class="w-full h-56 md:h-72 object-cover cursor-pointer" data-index="7"></div>
+          </div>
+        </div>
+
+        <button id="carousel-prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow-md">‹</button>
+        <button id="carousel-next" class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow-md">›</button>
+
+        <div id="carousel-dots" class="flex justify-center gap-2 mt-3"></div>
       </div>
 
       <!-- Lightbox / Carousel Modal -->
@@ -283,7 +328,7 @@
         </button>
         <div class="max-w-4xl w-full px-4">
           <div class="relative bg-black rounded">
-            <img id="lb-image" src="" alt="" class="w-full max-h-[70vh] object-contain rounded">
+            <img id="lb-image" src="" alt="" class="w-full max-h-[100%] object-contain rounded">
             <div id="lb-caption" class="text-sm text-white/80 mt-2 text-center"></div>
           </div>
         </div>
@@ -320,12 +365,24 @@
   </main>
 
   <footer class="bg-slate-900 text-white mt-8">
-    <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="max-w-6xl mx-auto px-6 py-8 grid md:grid-cols-3 gap-8">
       <div>
-        <strong>Arunachalam RR Nagar</strong>
-        <div class="text-sm text-slate-300">&copy; <span id="year"></span> All rights reserved.</div>
+        <h4 class="font-semibold text-lg">Arunachalam RR Nagar</h4>
+        <p class="text-sm text-slate-400 mt-2">Rajarajeshwari Nagar, Bengaluru — A thriving neighbourhood with excellence in planning and community.</p>
       </div>
-      <div class="text-sm text-slate-300">Designed with ♥ — Modern revamp</div>
+      <div>
+        <h5 class="font-semibold text-sm mb-3">Contact & Links</h5>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.rrnagar.org" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300">www.rrnagar.org</a></li>
+          <li><a href="mailto:info@rrnagar.org" class="text-blue-400 hover:text-blue-300">arunimpa@gmail.com</a></li>
+          <li><a href="tel:+918765432100" class="text-blue-400 hover:text-blue-300">+91 9844223500</a></li>
+        </ul>
+      </div>
+      <div class="text-right">
+        <p class="text-sm text-slate-400">&copy; <span id="year"></span> All rights reserved.</p>
+        <p class="text-sm text-slate-400 mt-2">Developed by <a href="https://www.techieqa.com" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300">TechieQA Software Pvt. Ltd</a></p>
+        <p class="text-xs text-slate-500 mt-2">Designed with ♥</p>
+      </div>
     </div>
   </footer>
 
@@ -345,12 +402,53 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
-    btn.addEventListener('click', ()=> menu.classList.toggle('hidden'));
+    // animated hamburger + sliding mobile menu
+    btn.addEventListener('click', ()=>{
+      const isOpen = btn.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      menu.classList.toggle('open');
+    });
 
-    // Lightbox / Carousel behaviour
+    // About modal behavior
     (function(){
-      const gallery = Array.from(document.querySelectorAll('#gallery-grid img'));
+      const openBtn = document.getElementById('about-more-btn');
+      const modal = document.getElementById('about-modal');
+      const closeBtn = document.getElementById('about-modal-close');
+      const closeBtn2 = document.getElementById('about-modal-close-2');
+      let lastFocused = null;
+      if(!openBtn || !modal) return;
+
+      function open(){
+        lastFocused = document.activeElement;
+        modal.classList.remove('hidden');
+        document.documentElement.classList.add('about-modal-open');
+        // focus close button for keyboard users
+        (closeBtn || closeBtn2).focus();
+      }
+      function close(){
+        modal.classList.add('hidden');
+        document.documentElement.classList.remove('about-modal-open');
+        if(lastFocused) lastFocused.focus();
+      }
+
+      openBtn.addEventListener('click', open);
+      if(closeBtn) closeBtn.addEventListener('click', close);
+      if(closeBtn2) closeBtn2.addEventListener('click', close);
+
+      // click outside to close
+      modal.addEventListener('click', (e)=>{ if(e.target === modal) close(); });
+
+      // Escape key
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && !modal.classList.contains('hidden')) close(); });
+    })();
+
+    // Lightbox + Carousel behaviour (gallery images are in #carousel-track)
+    (function(){
+      // collect images from potential places (carousel or legacy grid)
+      const gallery = Array.from(document.querySelectorAll('#carousel-track img, #gallery-grid img'));
       if(!gallery.length) return;
+
+      // Lightbox elements
       const lightbox = document.getElementById('lightbox');
       const lbImage = document.getElementById('lb-image');
       const lbCaption = document.getElementById('lb-caption');
@@ -362,12 +460,12 @@
       function show(index){
         const img = gallery[index];
         if(!img) return;
-        lbImage.src = img.src.replace('.jpg','-large.jpg'); // attempt large variant, falls back if not present
+        // use original image for full view (fallbacks handled by browser)
+        lbImage.src = img.src;
         lbImage.alt = img.alt || '';
         lbCaption.textContent = (img.alt || '') + ` (${index+1} / ${gallery.length})`;
         lightbox.classList.remove('hidden');
         current = index;
-        // prevent body scroll
         document.body.style.overflow = 'hidden';
       }
       function hide(){
@@ -393,6 +491,54 @@
         if(e.key === 'ArrowRight') next();
         if(e.key === 'ArrowLeft') prev();
       });
+
+      // --- Carousel autoplay + controls ---
+      const track = document.getElementById('carousel-track');
+      if(!track) return; // no carousel present
+      const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+      if(!slides.length) return;
+      const btnPrevC = document.getElementById('carousel-prev');
+      const btnNextC = document.getElementById('carousel-next');
+      const dotsContainer = document.getElementById('carousel-dots');
+
+      // helper: move track
+      let idx = 0;
+      function goTo(i){
+        idx = (i + slides.length) % slides.length;
+        track.style.transform = `translateX(-${idx * 100}%)`;
+        updateDots();
+      }
+      function nextC(){ goTo(idx + 1); }
+      function prevC(){ goTo(idx - 1); }
+
+      // dots
+      function updateDots(){
+        if(!dotsContainer) return;
+        Array.from(dotsContainer.children).forEach((b, i)=> b.classList.toggle('opacity-100', i===idx));
+      }
+      slides.forEach((s, i)=>{
+        const b = document.createElement('button');
+        b.className = 'w-2 h-2 rounded-full bg-slate-300 opacity-60';
+        b.setAttribute('aria-label', `Go to slide ${i+1}`);
+        b.addEventListener('click', ()=>{ goTo(i); resetAutoplay(); });
+        dotsContainer.appendChild(b);
+      });
+
+      if(btnNextC) btnNextC.addEventListener('click', ()=>{ nextC(); resetAutoplay(); });
+      if(btnPrevC) btnPrevC.addEventListener('click', ()=>{ prevC(); resetAutoplay(); });
+
+      // autoplay
+      let autoplayDelay = 3500;
+      let autoplay = setInterval(nextC, autoplayDelay);
+      function resetAutoplay(){ clearInterval(autoplay); autoplay = setInterval(nextC, autoplayDelay); }
+      // pause on hover/focus
+      track.addEventListener('mouseenter', ()=> clearInterval(autoplay));
+      track.addEventListener('mouseleave', ()=> resetAutoplay());
+      track.addEventListener('focusin', ()=> clearInterval(autoplay));
+      track.addEventListener('focusout', ()=> resetAutoplay());
+
+      // initialize
+      goTo(0);
 
     })();
   </script>
